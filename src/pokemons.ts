@@ -1,11 +1,13 @@
-const imgPath: string = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/';
+const pokeAPI: string = 'https://pokeapi.co/api/v2/pokemon/';
 
-const getImgPath = (id: number): string => {
-    return `${imgPath}${id}.png`
+const pokemonUrl = (id: number): string => {
+    return `${pokeAPI}${id}`;
 }
 
 const pokemons : number[] = [
     1, 4, 7, 10, 13, 16, 19, 21, 23, 25
-]
+];
 
-export { pokemons, getImgPath }
+const pokemonCount: number = pokemons.length;
+
+export { pokemons, pokemonUrl, pokemonCount };

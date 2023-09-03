@@ -1,0 +1,22 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(180deg, rgb(222, 220, 1) 10%, rgba(58, 243, 143, 0.9) 90%);
+    padding: 1rem;
+    margin: 0.5rem;
+    width: 15vw;
+    border-radius: 0.5rem;
+}
+
+.card-img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.card-text {
+    text-align: center;
+    font-size: 2.5vmin;
+    font-weight: 400;
+}

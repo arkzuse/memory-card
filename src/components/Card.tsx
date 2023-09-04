@@ -30,7 +30,7 @@ export default function Card({index, onClick}: CardProps) {
     return (
         <div onClick={() => onClick(index)} className='card'>
             <img src={image} alt={"pokemon"} className='card-img'/>
-            <div className='card-text'>{name}</div>
+            <div className='card-text'>{name}{index}</div>
         </div>
     )
 }

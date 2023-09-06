@@ -1,6 +1,8 @@
 import {useEffect, useState} from 'react';
 import {pokemons, pokemonUrl} from '../pokemons';
 import '../styles/Card.css';
+import backside from '../assets/images/cardback.png';
+import {useCardContext} from "../Context";
 
 interface CardProps {
     index: number;
@@ -11,8 +13,15 @@ export default function Card({index, onClick}: CardProps) {
     const pokeId: number = pokemons[index];
     const [name, setName] = useState<string>('');
     const [image, setImage] = useState<string>('');
+    const {isFlipped, toggleFlip} = useCardContext();
 
     useEffect(() => {
+        setTimeout(() => {
+            if (isFlipped) {
+                toggleFlip();
+            }
+        }, 800);
+
         fetch(pokemonUrl(pokeId))
             .then(response => {
                 if (!response.ok) {
@@ -25,12 +34,27 @@ export default function Card({index, onClick}: CardProps) {
                 setName((data.name).toUpperCase());
                 setImage(data.sprites.other['official-artwork'].front_default)
             })
-    })
+    });
+
+    function handleClick() {
+        toggleFlip();
+
+        setTimeout(() => {
+            onClick(index);
+        }, 500);
+    }
 
     return (
-        <div onClick={() => onClick(index)} className='card'>
-            <img src={image} alt={"pokemon"} className='card-img'/>
-            <div className='card-text'>{name}{index}</div>
+        <div onClick={handleClick} className={`card ${isFlipped ? 'flipped' : ''}`}>
+            <div className="card-inner">
+                <div className='card-front'>
+                    <img src={image} alt={"pokemon"} className='card-img'/>
+                    <div className='card-text'>{name}</div>
+                </div>
+                <div className='card-back'>
+                    <img src={backside} alt={'backside'}/>
+                </div>
+            </div>
         </div>
     )
 }

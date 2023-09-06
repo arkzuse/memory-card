@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import './App.css';
 import Card from "./components/Card";
+import {CardProvider} from "./Context";
 
 const selected = new Set<number>();
 
 function getCards() {
-    const cards : number[] = [];
+    const cards: number[] = [];
 
     while (cards.length < 5) {
         const random = Math.floor(Math.random() * 10);
@@ -48,8 +49,7 @@ function App() {
         if (!selected.has(index)) {
             selected.add(index);
             setScore(score + 1);
-        }
-        else {
+        } else {
             setScore(score - 1);
         }
 
@@ -60,17 +60,19 @@ function App() {
         <>
             <h2>Memory Game</h2>
             {selected.size !== 10 && (<div>Score: {score}</div>)}
-            <div className='card-grid'>
-                {selected.size !== 10 && getCards().map((index) => (
-                    <Card key={index} index={index} onClick={handleCardClick}/>
-                ))}
-                {selected.size === 10 && (
-                    <div>
-                        <h2>Game Over</h2>
-                        <h2>Score: {score}</h2>
-                    </div>
-                )}
-            </div>
+            <CardProvider>
+                <div className='card-grid'>
+                    {selected.size !== 10 && getCards().map((index) => (
+                        <Card key={index} index={index} onClick={handleCardClick}/>
+                    ))}
+                    {selected.size === 10 && (
+                        <div>
+                            <h2>Game Over</h2>
+                            <h2>Score: {score}</h2>
+                        </div>
+                    )}
+                </div>
+            </CardProvider>
         </>
     )
 }

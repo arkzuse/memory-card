@@ -2,6 +2,9 @@
     display: flex;
     justify-content: space-between;
     width: fit-content;
+    border-radius: 0.5rem;
+    padding: 0.25rem;
+    background-color: #007bff;
 }
 
 .difficulty-button {
@@ -10,6 +13,7 @@
     color: white;
     border: none;
     cursor: pointer;
+    border-radius: 0.5rem;
 }
 
 .difficulty-button:hover {

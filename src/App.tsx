@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './App.css';
+import './styles/app.css';
 import Card from "./components/Card";
 import {CardProvider} from "./Context";
 import DifficultySelector from "./components/DifficultySelector";
@@ -29,7 +29,7 @@ function getCards() {
             used++;
         }
     });
-    if (used === 5) {
+    if (used === choices) {
         const remove = Math.floor(Math.random() * choices);
 
         while (true) {
@@ -48,7 +48,6 @@ function getCards() {
 function App() {
     const [score, setScore] = useState(0);
     const [level, setLevel] = useState('easy');
-    const [cards, setCards] = useState(getCards());
 
     function handleCardClick(index: number) {
         if (selected.size === n) {
@@ -62,10 +61,6 @@ function App() {
         } else {
             setScore(score - 1);
         }
-
-        setCards(getCards());
-
-        console.log(selected)
     }
 
     function handleDifficultyChange(level: string) {
@@ -74,11 +69,12 @@ function App() {
         choices = (difficulties.get(level) as number[])[1];
         selected.clear();
         setScore(0);
-        setCards(getCards());
     }
 
-    console.log(cards)
-
+    function restart() {
+        selected.clear();
+        setScore(0);
+    }
 
     return (
         <>
@@ -92,13 +88,14 @@ function App() {
             </div>
             <CardProvider>
                 <div className='card-grid'>
-                    {selected.size !== n && cards.map((index) => (
+                    {selected.size !== n && getCards().map((index) => (
                         <Card key={index} index={index} onClick={handleCardClick}/>
                     ))}
                     {selected.size === n && (
-                        <div>
+                        <div className="game-over">
                             <h2>Game Over</h2>
                             <h2>Score: {score}</h2>
+                            <button className="restart" onClick={restart}>↻</button>
                         </div>
                     )}
                 </div>

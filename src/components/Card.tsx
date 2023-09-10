@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {pokemons, pokemonUrl} from '../pokemons';
-import '../styles/Card.css';
+import '../styles/card.css';
 import backside from '../assets/images/cardback.png';
 import {useCardContext} from "../Context";
 

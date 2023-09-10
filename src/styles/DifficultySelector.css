@@ -1,0 +1,21 @@
+.difficulty-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: fit-content;
+}
+
+.difficulty-button {
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.difficulty-button:hover {
+    background-color: #0056b3;
+}
+
+.selected {
+    background-color: #28a745;
+}

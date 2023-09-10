@@ -48,11 +48,11 @@ export default function Card({index, onClick}: CardProps) {
         <div onClick={handleClick} className={`card ${isFlipped ? 'flipped' : ''}`}>
             <div className="card-inner">
                 <div className='card-front'>
-                    <img src={image} alt={"pokemon"} className='card-img'/>
+                    <img src={image} className='card-img'/>
                     <div className='card-text'>{name}</div>
                 </div>
                 <div className='card-back'>
-                    <img src={backside} alt={'backside'}/>
+                    <img src={backside}/>
                 </div>
             </div>
         </div>

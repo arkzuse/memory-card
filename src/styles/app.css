@@ -30,9 +30,15 @@ header {
 }
 
 .restart {
-    background: transparent;
     border: none;
     font-weight: bolder;
     font-size: xx-large;
     cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 1rem;
+    color: #ffffdb;
+}
+
+.restart:hover {
+    background-color: rgba(0, 0, 0, 0.7);
 }
